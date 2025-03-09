@@ -74,7 +74,7 @@ function doStuff()
     time = cnt * (psc+1) / clock;
     disp("Time: " + time + " s")
 
-    disp("Test 1 end: v=" + (readBytes/1000) / time + ...
+    disp("Test 1 end: v=" + (readBytes/1024) / time + ...
         " kB/s (fails = " + fails + ")");
 
     function cleanUp()
