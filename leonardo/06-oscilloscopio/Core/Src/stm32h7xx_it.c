@@ -373,7 +373,7 @@ void ADC3_IRQHandler(void)
 
 	return;*/
 
-	uint32_t cnt_tmp = TIM2->CNT;
+	//uint32_t cnt_tmp = TIM2->CNT;
 
 	if (ADC3->IER & ADC_IER_AWD3IE && ADC3->ISR & ADC_ISR_AWD3)
 	{
@@ -381,9 +381,9 @@ void ADC3_IRQHandler(void)
 		{
 			ADC3->IER &= ~ADC_IER_AWD3IE;
 
-			extern volatile uint8_t is_triggered;
-			if (!is_triggered)
-				cnt1 = cnt_tmp;
+			//extern volatile uint8_t is_triggered;
+			//if (!is_triggered)
+			//	cnt1 = cnt_tmp;
 
 			void onTrigger(void);
 			onTrigger();
