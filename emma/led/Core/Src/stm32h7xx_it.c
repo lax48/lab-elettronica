@@ -221,7 +221,7 @@ void EXTI15_10_IRQHandler(void)
 			stato_vel = 0;
 		}
 
-		TIM6->EGR |= TIM_EGR_UG;
+		TIM6->EGR = TIM_EGR_UG;
 
 		EXTI->PR1 = EXTI_PR1_PR13;
 	}
@@ -229,7 +229,7 @@ void EXTI15_10_IRQHandler(void)
 	if (0)
 	{
   /* USER CODE END EXTI15_10_IRQn 0 */
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
+  HAL_GPIO_EXTI_IRQHandler(B1_Pin);
   /* USER CODE BEGIN EXTI15_10_IRQn 1 */
 	}
   /* USER CODE END EXTI15_10_IRQn 1 */
@@ -243,6 +243,7 @@ void TIM6_DAC_IRQHandler(void)
   /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
 
 	static int stato_led = 0;
+
 	if (stato_led == 0)
 	{
 		GPIOB->BSRR = GPIO_BSRR_BS0;
