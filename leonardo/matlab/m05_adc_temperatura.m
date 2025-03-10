@@ -1,9 +1,9 @@
 clear;
 
 function doStuff()
-    cleanupObj = onCleanup(@cleanUp);
-
     mycomm = serialport('/dev/tty.usbmodem1103', 921600);
+    
+    cleanupObj = onCleanup(@() cleanUp(mycomm));
     write(mycomm, 'c', 'char');
     vref_cal = read(mycomm, 1, "uint16");
     t1 = read(mycomm, 1, "uint16");
@@ -74,7 +74,7 @@ function doStuff()
         end
     end
 
-    function cleanUp()
+    function cleanUp(mycomm)
         disp("Bye");
         delete(mycomm);
     end

@@ -13,9 +13,9 @@ function doStuff()
     mySeed = cast(0xfac83126, "uint64");
     myEnd = cast(0xABCDEF, "uint64");
 
-    cleanupObj = onCleanup(@cleanUp);
-
     mycomm = serialport('/dev/tty.usbmodem1103', 921600, Timeout=10);
+
+    cleanupObj = onCleanup(@() cleanUp(mycomm));
 
     % Burst write (MCU VP)
     disp("Configure write burst test")
@@ -77,7 +77,7 @@ function doStuff()
     disp("Test 1 end: v=" + (readBytes/1024) / time + ...
         " kB/s (fails = " + fails + ")");
 
-    function cleanUp()
+    function cleanUp(mycomm)
         disp("Bye");
         delete(mycomm);
     end
